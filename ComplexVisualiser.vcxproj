@@ -120,15 +120,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DrawPrimitives.cpp" />
+    <ClCompile Include="LodePNG.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PNGReader.cpp" />
     <ClCompile Include="Shaderloader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="mandelbrot.glsl" />
     <None Include="pixelFile.glsl" />
     <None Include="vertexFile.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DrawPrimitives.h" />
+    <ClInclude Include="LodePNG.h" />
+    <ClInclude Include="PNGReader.h" />
     <ClInclude Include="Shaderloader.h" />
+    <ClInclude Include="Texturelib.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

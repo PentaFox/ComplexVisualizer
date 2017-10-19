@@ -77,7 +77,7 @@ GLuint Shaderloader::LoadShaders(const char * vertex_file_path, const char * fra
 	// Link the program
 	printf("Linking program\n");
 	GLuint ProgramID = glCreateProgram();
-	glAttachShader(ProgramID, VertexShaderID);
+	//glAttachShader(ProgramID, VertexShaderID);
 	glAttachShader(ProgramID, FragmentShaderID);
 	glLinkProgram(ProgramID);
 

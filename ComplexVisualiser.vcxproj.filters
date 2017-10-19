@@ -21,13 +21,35 @@
     <ClCompile Include="Shaderloader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DrawPrimitives.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PNGReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LodePNG.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="pixelFile.glsl" />
     <None Include="vertexFile.glsl" />
+    <None Include="mandelbrot.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shaderloader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawPrimitives.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texturelib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PNGReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LodePNG.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
