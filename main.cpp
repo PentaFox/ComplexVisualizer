@@ -21,6 +21,11 @@ using namespace std;
 #define WINDOWHEIGHT 600
 #define WINDOWTITLE "FOXX"
 
+//GPU Locations
+GLuint program; // GPU Linker
+
+GLuint centerLoc;
+GLuint scaleLoc;
 
 GLubyte indices[] =
 {
@@ -36,6 +41,7 @@ float points[] = {
 
 void errorCallback(int error, const char* callback);
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+void cursorCallback(GLFWwindow* window, int button, int action, int mods);
 
 int main(int argc, char* agrv[])
 {
@@ -47,11 +53,11 @@ int main(int argc, char* agrv[])
 	GLFWwindow* window;
 	window = glfwCreateWindow(WINDOWWIDTH, WINDOWHEIGHT, WINDOWTITLE, NULL, NULL);
 
-	
+
 	//SET CALLBACKS
 	glfwSetErrorCallback(errorCallback);
 	glfwSetKeyCallback(window, keyCallback);
-	
+	glfwSetMouseButtonCallback(window, cursorCallback);
 	
 	//SET CONTEXT
 	glfwMakeContextCurrent(window);
@@ -97,15 +103,16 @@ int main(int argc, char* agrv[])
 	*/
 	//SET SHADER   //vertex shader not in place
 	Shaderloader shaderloader;
-	GLuint program = shaderloader.LoadShaders("vertexFile.glsl", "mandelbrot.glsl");
+	program = shaderloader.LoadShaders("vertexFile.glsl", "mandelbrot.glsl");
 	glUseProgram(program);
 
 
 	//Load GLSL Uniforms
-	GLuint centerLoc = glGetUniformLocation(program, "center");
-	glUniform2f(centerLoc, 0.0, 0.7);
-	
-	
+	centerLoc = glGetUniformLocation(program, "center");
+	glUniform2f(centerLoc, 0.0, 0.0);
+	float scale = 2.0f;
+	scaleLoc = glGetUniformLocation(program, "scale");
+	glUniform1f(scaleLoc, scale);
 
 
 	PNGReader pngReader;
@@ -178,3 +185,21 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
+void cursorCallback(GLFWwindow* window, int button, int action, int mods)
+{
+	if (button == GLFW_MOUSE_BUTTON_1 && action == GLFW_PRESS)
+	{
+		double su, sv;
+		glfwGetCursorPos(window, &su, &sv);
+		// su -> posX , sv -> posY
+		double px, py;
+		px = (su / WINDOWWIDTH);
+		py = (su / WINDOWHEIGHT);
+
+		glUniform2f(program, px , py);
+
+		cout << "\nCursor coord in ScreenPos (su, sv): " << su << ", " << sv;
+		cout << "\nCenter point selected : (px, py): " << px << ", " << py ;
+	}
+	
+}

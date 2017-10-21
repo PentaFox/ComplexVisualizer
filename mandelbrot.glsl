@@ -1,5 +1,6 @@
 uniform sampler1D tex;
 uniform vec2 center;
+uniform float scale;
 
 varying vec4 pos;
 void main() {
@@ -7,8 +8,8 @@ void main() {
 //float centerX = (pos.x - 1920.0 / 2.0)*4.0/1920.0;
 //float centerY = (pos.y - 1080.0 / 2.0)*4.0 /1080.0;
 
-float centerX = 1.333 * (gl_TexCoord[0].x - 0.5) * 0.6 - center.y;
-float centerY = (gl_TexCoord[0].y - 0.5) * 0.6 - center.y;
+float centerX = 1.333 * (gl_TexCoord[0].x - 0.5) * scale - center.y;
+float centerY = (gl_TexCoord[0].y - 0.5) * scale - center.y;
 
 float x = centerX;
 float y = centerY;
